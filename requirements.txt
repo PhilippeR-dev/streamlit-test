@@ -1,6 +1,0 @@
-# requirements.txt
-streamlit
-plotly
-streamlit_tags
-streamlit_agraph
-pygraphviz
