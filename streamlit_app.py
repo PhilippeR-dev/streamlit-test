@@ -1,24 +1,18 @@
 import streamlit as st
-# import graphviz
-"""
-  # Create a graphlib graph object
-  graph = graphviz.Digraph()
-  graph.edge('run', 'intr')
-  graph.edge('intr', 'runbl')
-  graph.edge('runbl', 'run')
-  graph.edge('run', 'kernel')
-  graph.edge('kernel', 'zombie')
-  graph.edge('kernel', 'sleep')
-  graph.edge('kernel', 'runmem')
-  graph.edge('sleep', 'swap')
-  graph.edge('swap', 'runswap')
-  graph.edge('runswap', 'new')
-  graph.edge('runswap', 'runmem')
-  graph.edge('new', 'runmem')
-  graph.edge('sleep', 'runmem')
-"""
+from streamlit.components.v1 import html
 
-# st.graphviz_chart(graph)
+def graphviz_component(dot_source):
+    return html('<div><img src="https://your-graphviz-api-url?dot_source=' + dot_source + '"></div>', width=800, height=600)
 
-number = st.slider("Pick a number: ", min_value=1, max_value=10)
-st.text("Your number is " + str(number))
+st.title("Graphviz Visualization in Streamlit")
+
+dot_source = '''
+digraph G {
+    A -> B
+    B -> C
+    C -> A
+}
+'''
+
+st.write("Graphviz visualization:")
+st.components.v1.html(graphviz_component(dot_source))
